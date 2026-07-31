@@ -121,4 +121,4 @@ http://localhost:3000
 
 ## Notes
 
-The tutorial app uses the default preimage `Hello World` for the hash-lock example. This is fine for devnet learning, but not safe as a production lock pattern.
+The tutorial app uses the default preimage `Hello World` for the hash-lock example.
