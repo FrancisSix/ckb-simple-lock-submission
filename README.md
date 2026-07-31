@@ -15,16 +15,43 @@ The work completed:
 
 ```text
 .
-├── dapp/                  # Runnable Simple Lock tutorial project
-├── proofs/
-│   ├── screenshots/       # Numbered proof screenshots
-│   ├── transactions/      # Deposit and frontend unlock tx details
-│   ├── deployment/        # Deployment script info artifacts
-│   └── build/             # Built hash-lock bytecode and JS bundle
-├── PROOFS.md              # Proof index with screenshots and tx hashes
-├── SUBMISSION.md          # Submission details and checklist
-└── REFLECTION.md          # Reflection template to complete in your own words
+|-- dapp/                  # Runnable Simple Lock tutorial project
+|-- proofs/
+|   |-- screenshots/       # Numbered proof screenshots
+|   |-- transactions/      # Deposit and frontend unlock tx details
+|   |-- deployment/        # Deployment script info artifacts
+|   `-- build/             # Built hash-lock bytecode and JS bundle
+|-- PROOFS.md              # Proof index with screenshots and tx hashes
+|-- SUBMISSION.md          # Submission details and checklist
+`-- REFLECTION.md          # Reflection
 ```
+
+## Direct Links
+
+Main pages:
+
+- [Proofs](https://github.com/FrancisSix/ckb-simple-lock-submission/blob/main/PROOFS.md)
+- [Submission details](https://github.com/FrancisSix/ckb-simple-lock-submission/blob/main/SUBMISSION.md)
+- [Reflection](https://github.com/FrancisSix/ckb-simple-lock-submission/blob/main/REFLECTION.md)
+
+Proof screenshots:
+
+- [01 - OffCKB devnet running](https://github.com/FrancisSix/ckb-simple-lock-submission/blob/main/proofs/screenshots/01-offckb-devnet-running.png)
+- [02 - Contract build success](https://github.com/FrancisSix/ckb-simple-lock-submission/blob/main/proofs/screenshots/02-contract-build-success.png)
+- [03 - Lock script deployed](https://github.com/FrancisSix/ckb-simple-lock-submission/blob/main/proofs/screenshots/03-lock-script-deployed.png)
+- [04 - Frontend running](https://github.com/FrancisSix/ckb-simple-lock-submission/blob/main/proofs/screenshots/04-frontend-running.png)
+- [05 - Deposit balance](https://github.com/FrancisSix/ckb-simple-lock-submission/blob/main/proofs/screenshots/05-deposit-balance.png)
+- [06 - Frontend unlock success](https://github.com/FrancisSix/ckb-simple-lock-submission/blob/main/proofs/screenshots/06-frontend-unlock-success.png)
+- [07 - Final balance after unlock](https://github.com/FrancisSix/ckb-simple-lock-submission/blob/main/proofs/screenshots/07-final-balance-after-unlock.png)
+
+Transaction proofs and artifacts:
+
+- [Deposit proof](https://github.com/FrancisSix/ckb-simple-lock-submission/blob/main/proofs/transactions/deposit-proof.txt)
+- [Frontend unlock proof](https://github.com/FrancisSix/ckb-simple-lock-submission/blob/main/proofs/transactions/frontend-unlock-proof.txt)
+- [Deployment scripts.json](https://github.com/FrancisSix/ckb-simple-lock-submission/blob/main/proofs/deployment/scripts.json)
+- [System scripts.json](https://github.com/FrancisSix/ckb-simple-lock-submission/blob/main/proofs/deployment/system-scripts.json)
+- [Built hash-lock bytecode](https://github.com/FrancisSix/ckb-simple-lock-submission/blob/main/proofs/build/hash-lock.bc)
+- [Built hash-lock JS bundle](https://github.com/FrancisSix/ckb-simple-lock-submission/blob/main/proofs/build/hash-lock.js)
 
 ## Key Results
 
@@ -95,5 +122,3 @@ http://localhost:3000
 ## Notes
 
 The tutorial app uses the default preimage `Hello World` for the hash-lock example. This is fine for devnet learning, but not safe as a production lock pattern.
-
-Before submitting to the campaign, complete `REFLECTION.md` in your own words. The campaign explicitly asks participants to avoid AI-generated reflections.

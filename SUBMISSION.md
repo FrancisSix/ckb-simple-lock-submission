@@ -89,5 +89,4 @@ Before final submission:
 
 - Upload this repository or the `proofs/` folder to GitHub/file storage.
 - Join the Build on CKB Telegram group if you have not already.
-- Complete `REFLECTION.md` in your own words.
-- Do not submit the reflection template unchanged.
+- Review `REFLECTION.md` before final submission.

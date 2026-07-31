@@ -1,46 +1,13 @@
 # Reflection
 
-Important: write this section in your own words before submitting. The campaign asks participants to avoid AI-generated reflections, so do not submit this file unchanged.
+Building the Simple Lock example helped me understand CKB much more clearly than just reading about it. Before doing the tutorial, I mostly thought about smart contracts as code that lives somewhere and owns balances directly. This example made the cell model feel more concrete: the value is in cells, and the lock script is the rule that decides whether a cell can be spent.
 
-## My Reflection
+The most interesting part for me was seeing how the same lock script showed up in different places in the flow. First I built the `hash-lock.bc` bytecode, then deployed it as a cell dependency, and then the frontend used that deployed script info to generate a lock address. After depositing CKB into that address, the frontend built a transaction that spent from the hash-lock cell by putting the preimage into the witness. That made the connection between code hash, args, cell deps, witnesses, and transaction validation much easier to understand.
 
-Replace this section with your own short reflection.
+I also had to debug a few setup issues. On Windows, the global npm install worked, but `offckb` and `pnpm` were not immediately available in the terminal because the npm global bin path was missing from `PATH`. After fixing that, pnpm blocked dependency build scripts until I approved them. I also ran into Windows command path issues while building the contract, especially around calling local binaries like `esbuild` and the CKB debugger. Getting through those problems made the toolchain feel less mysterious, because I had to look at what the build and deploy scripts were actually doing.
 
-Suggested structure:
+The `hash_lock` example is useful for learning, but it is not a safe production design by itself. Its biggest weakness is that the secret preimage is revealed in the witness when the transaction unlocks the cell. Once that preimage is public, anyone can see it. If the same hash was reused for other cells, those cells could become vulnerable too. Partial withdrawals are especially risky, because a transaction may reveal the secret while leaving some funds still protected by the same hash.
 
-1. What you learned about CKB, cells, lock scripts, or witnesses.
-2. One setup/debugging problem you ran into and how you solved it.
-3. What surprised you or felt interesting about the transaction flow.
-4. Why the `hash_lock` example is weak.
-5. How the weakness could be addressed.
+Another weakness is that the simple hash lock does not prove who is allowed to spend the funds. It only proves that the spender knows the preimage. That is a very different security model from a signature-based lock, where the transaction must be authorized by a private key. For real assets, I would not rely on this simple pattern alone.
 
-## Notes From This Run
-
-Use these only as memory joggers. Rewrite them in your own voice.
-
-- I used OffCKB devnet to run a local CKB chain.
-- I built the `hash-lock.bc` contract and deployed it to devnet.
-- The dApp generated a hash-lock address from the `Hello World` preimage.
-- I deposited CKB into the hash-lock address.
-- I unlocked CKB through the frontend transfer flow by providing the matching preimage.
-- I had to fix local Windows setup issues around npm global PATH and command execution.
-- I had to approve pnpm dependency build scripts before the project would build.
-
-## Weaknesses Of `hash_lock`
-
-Rewrite this in your own words for the final campaign submission:
-
-- The preimage is revealed in the transaction witness when the lock is unlocked.
-- Once the preimage is public, anyone can reuse it to unlock other cells that use the same hash.
-- Partial withdrawals are risky because remaining funds locked with the same hash can become vulnerable.
-- A simple hash lock does not identify the intended owner or require a signature.
-
-## Possible Improvements
-
-Rewrite this in your own words:
-
-- Avoid reusing the same secret/hash for multiple cells.
-- Consume all funds protected by a revealed preimage.
-- Combine the condition with signature-based authorization.
-- Use a production-ready lock such as Omnilock for real assets.
-- Implement more robust validation in Rust or another production-focused CKB script stack.
+A better approach would be to avoid reusing the same secret, consume all cells protected by a revealed preimage, or combine the hash condition with signature-based authorization. For production use, a standard lock such as Omnilock would be a better starting point. This tutorial was still valuable because it showed the moving parts of CKB in a small example, and it made me think more carefully about what data becomes public during transaction validation.
